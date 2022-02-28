@@ -1,0 +1,63 @@
+@import 'variables';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+
+  background: #fff;
+  color: #111;
+  accent-color: var(--c-primary);
+  color-scheme: dark light;
+
+  font-family: $FONT_EN;
+  font-weight: 400;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang='fa'] {
+  font-family: $FONT_FA;
+  direction: rtl;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background: #121212;
+    color: #e8e8e8;
+  }
+}
+
+// explicitly make every page 100vh
+html,
+body,
+#__next {
+  min-height: 100%;
+}
+
+::selection {
+  background: var(--c-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 950;
+}

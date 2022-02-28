@@ -1,0 +1,7 @@
+{
+  "cSpell.language": "en, fa",
+  "i18n-ally.localesPaths": [
+    "public/locales"
+  ],
+  "i18n-ally.keystyle": "nested"
+}
