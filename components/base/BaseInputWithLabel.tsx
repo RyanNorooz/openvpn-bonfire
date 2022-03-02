@@ -9,7 +9,7 @@ export default function BaseInputWithLabel(allProps: Props) {
 
   return (
     <>
-      <label htmlFor={props.id} className="w-fit text-left font-bold">
+      <label htmlFor={props.id} className="font-bold text-left w-fit">
         {labelText}
       </label>
 

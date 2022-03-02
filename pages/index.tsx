@@ -63,15 +63,16 @@ export default function Home() {
   )
 }
 
-// interface Form {
-//   clientName: HTMLInputElement
-//   startDate: HTMLInputElement
-//   subscriptionLength: HTMLInputElement
-// }
+interface Form {
+  clientName: HTMLInputElement
+  startDate: HTMLInputElement
+  subscriptionLength: HTMLInputElement
+}
 
 const requestCreateNewClient: React.FormEventHandler<HTMLFormElement> =
   async function (e) {
     e.preventDefault()
+    const form = e.target as Form
     const data = {
       clientName: e.target.clientName?.value,
       startDate: e.target.startDate?.value,
