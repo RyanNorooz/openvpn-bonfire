@@ -64,32 +64,31 @@ export default function Home() {
 }
 
 interface Form {
-  clientName: HTMLInputElement
-  startDate: HTMLInputElement
-  subscriptionLength: HTMLInputElement
+  clientName: { value: string }
+  startDate: { value: string }
+  subscriptionLength: { value: string }
 }
 
-const requestCreateNewClient: React.FormEventHandler<HTMLFormElement> =
-  async function (e) {
-    e.preventDefault()
-    const form = e.target as Form
-    const data = {
-      clientName: e.target.clientName?.value,
-      startDate: e.target.startDate?.value,
-      subscriptionLength: e.target.subscriptionLength?.value,
-    }
-    console.log('data:', data)
-
-    fetch('/api/newprofile', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data)
-      })
-      .catch((error) => {
-        console.error('Error:', error)
-      })
+async function requestCreateNewClient(e: React.SyntheticEvent) {
+  e.preventDefault()
+  const form = e.target as typeof e.target & Form
+  const data = {
+    clientName: form.clientName?.value,
+    startDate: form.startDate?.value,
+    subscriptionLength: form.subscriptionLength?.value,
   }
+  console.log('data:', data)
+
+  fetch('/api/newprofile', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data)
+    })
+    .catch((error) => {
+      console.error('Error:', error)
+    })
+}
