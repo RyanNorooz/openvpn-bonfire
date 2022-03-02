@@ -1,4 +1,17 @@
-@import 'variables';
+$FONT: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+:root {
+  --c-primary: #b45a46;
+  --bg: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-primary: #ff886c;
+    --bg: #121212;
+  }
+}
 
 *,
 *::before,
@@ -12,29 +25,16 @@ body {
   padding: 0;
   scroll-behavior: smooth;
 
-  background: #fff;
-  color: #111;
+  background: var(--bg);
+  color: #b45a46;
   accent-color: var(--c-primary);
   color-scheme: dark light;
 
-  font-family: $FONT_EN;
+  font-family: $FONT;
   font-weight: 400;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-html[lang='fa'] {
-  font-family: $FONT_FA;
-  direction: rtl;
-}
-
-@media (prefers-color-scheme: dark) {
-  html,
-  body {
-    background: #121212;
-    color: #e8e8e8;
-  }
 }
 
 // explicitly make every page 100vh
@@ -42,15 +42,6 @@ html,
 body,
 #__next {
   min-height: 100%;
-}
-
-::selection {
-  background: var(--c-primary);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 h1,

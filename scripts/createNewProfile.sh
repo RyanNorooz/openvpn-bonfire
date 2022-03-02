@@ -17,16 +17,14 @@ new_client () {
     } > ~/"$client".ovpn
 }
 
-
-echo
-echo "Provide a name for the client:"
-read -p "Name: " unsanitized_client
+unsanitized_client=$1
 client=$(sed 's/[^0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-]/_/g' <<< "$unsanitized_client")
-while [[ -z "$client" || -e /etc/openvpn/server/easy-rsa/pki/issued/"$client".crt ]]; do
+# if $client is already taken or is a reserved word, exit.
+if [[ -z "$client" || -e /etc/openvpn/server/easy-rsa/pki/issued/"$client".crt ]]; do
     echo "$client: invalid name."
-    read -p "Name: " unsanitized_client
-    client=$(sed 's/[^0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-]/_/g' <<< "$unsanitized_client")
+    exit 1
 done
+
 
 cd /etc/openvpn/server/easy-rsa/
 EASYRSA_CERT_EXPIRE=3650 ./easyrsa build-client-full "$client" nopass
