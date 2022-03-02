@@ -15,6 +15,7 @@ module.exports = {
             stage: 3,
             autoprefixer: {
               flexbox: 'no-2009',
+              grid: 'autoplace',
             },
             features: {
               'custom-properties': false,
