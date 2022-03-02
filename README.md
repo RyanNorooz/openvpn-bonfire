@@ -1,6 +1,6 @@
-# Sleepy Portfolio Template
+# Automation Tool for OpenVPN Server
 
-Simple and clean portfolio template. made with Next.js
+made with Next.js
 
 ## Install Dependencies
 
