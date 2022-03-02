@@ -1,0 +1,46 @@
+name: build NextJS app
+
+on:
+  push:
+    branches: [branchnamehere]
+  pull_request:
+    branches: [branchnamehere]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source 💾
+        uses: actions/checkout@v2
+
+      - name: Cache pnpm modules ⚡
+        id: pnpmCacheStep
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-pnpm-modules
+        with:
+          path: |
+            ~/.pnpm-store
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: pnpm Installation 🔮
+        uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.20.3
+
+      - name: Install deps 📦
+        run: pnpm i
+
+      # - name: Set ENV variables 📝
+      #   if: ${{ github.event.repository.name }} != ${{ github.repository_owner }}.github.io
+      #   run: echo ::set-env BASE_URL=/${{ github.event.repository.name }}/
+
+      - name: Build 🔨
+        run: pnpm build
