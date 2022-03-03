@@ -27,8 +27,8 @@ export default function Home() {
               labelText="Profile name"
               title="no spaces, only number and letters, dash and underscore allowed"
               type="text"
-              id="clientName"
-              name="clientName"
+              id="profileName"
+              name="profileName"
               pattern="^[\w-]+$"
               required
             />
@@ -63,17 +63,17 @@ export default function Home() {
   )
 }
 
-interface Form {
-  clientName: { value: string }
+interface VPNProfileForm {
+  profileName: { value: string }
   startDate: { value: string }
   subscriptionLength: { value: string }
 }
 
-async function requestCreateNewClient(e: React.SyntheticEvent) {
+function requestCreateNewClient(e: React.SyntheticEvent) {
   e.preventDefault()
-  const form = e.target as typeof e.target & Form
+  const form = e.target as typeof e.target & VPNProfileForm
   const data = {
-    clientName: form.clientName?.value,
+    profileName: form.profileName?.value,
     startDate: form.startDate?.value,
     subscriptionLength: form.subscriptionLength?.value,
   }
@@ -84,11 +84,11 @@ async function requestCreateNewClient(e: React.SyntheticEvent) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
-    .then((response) => response.json())
+    .then((res) => res.json())
     .then((data) => {
       console.log('Success:', data)
     })
-    .catch((error) => {
-      console.error('Error:', error)
+    .catch((err) => {
+      console.error('Error:', err)
     })
 }
