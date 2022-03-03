@@ -1,8 +1,44 @@
 import type { GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useState } from 'react'
 import BaseInputWithLabel from '@/components/base/BaseInputWithLabel'
+import Modal from '@/components/Modal'
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  interface VPNProfileForm {
+    profileName: { value: string }
+    startDate: { value: string }
+    subscriptionLength: { value: string }
+  }
+
+  function requestCreateNewProfile(e: React.SyntheticEvent) {
+    e.preventDefault()
+    setIsModalOpen(true)
+
+    const form = e.target as typeof e.target & VPNProfileForm
+    const data = {
+      profileName: form.profileName?.value,
+      startDate: form.startDate?.value,
+      subscriptionLength: form.subscriptionLength?.value,
+    }
+    console.log('data:', data)
+
+    fetch('/api/newprofile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('Success:', data)
+      })
+      .catch((err) => {
+        console.error('Error:', err)
+      })
+  }
+
   return (
     <>
       <Head>
@@ -20,7 +56,7 @@ export default function Home() {
           </p>
 
           <form
-            onSubmit={requestCreateNewClient}
+            onSubmit={requestCreateNewProfile}
             className="flex flex-col gap-2"
           >
             <BaseInputWithLabel
@@ -59,36 +95,8 @@ export default function Home() {
           </form>
         </div>
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   )
-}
-
-interface VPNProfileForm {
-  profileName: { value: string }
-  startDate: { value: string }
-  subscriptionLength: { value: string }
-}
-
-function requestCreateNewClient(e: React.SyntheticEvent) {
-  e.preventDefault()
-  const form = e.target as typeof e.target & VPNProfileForm
-  const data = {
-    profileName: form.profileName?.value,
-    startDate: form.startDate?.value,
-    subscriptionLength: form.subscriptionLength?.value,
-  }
-  console.log('data:', data)
-
-  fetch('/api/newprofile', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log('Success:', data)
-    })
-    .catch((err) => {
-      console.error('Error:', err)
-    })
 }
