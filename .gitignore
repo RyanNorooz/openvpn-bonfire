@@ -12,9 +12,9 @@
 /.next/
 /out/
 
-# temporary 
+# temporary files
 *.tmp
-tmp/
+*.temp
 
 # db
 *.db
