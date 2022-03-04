@@ -1,8 +1,12 @@
-import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useState } from 'react'
 import BaseInputWithLabel from '@/components/base/BaseInputWithLabel'
 import Modal from '@/components/Modal'
+import DefaultLayout from '@/components/DefaultLayout'
+
+Home.layout = (page: React.ReactElement) => (
+  <DefaultLayout>{page}</DefaultLayout>
+)
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)

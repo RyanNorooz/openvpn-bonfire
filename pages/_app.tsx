@@ -4,6 +4,8 @@ import '@/styles/main.scss'
 
 // ################### Types ###################
 import type { AppProps } from 'next/app'
+import type { NextPage } from 'next'
+import type { ReactElement, ReactNode } from 'react'
 
 // ########## Libraries and Components ##########
 import Head from 'next/head'
@@ -15,14 +17,23 @@ router.events.on('routeChangeStart', nProgress.start)
 router.events.on('routeChangeError', nProgress.done)
 router.events.on('routeChangeComplete', nProgress.done)
 
-function MyApp({ Component, pageProps }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  layout?: (page: ReactElement) => ReactNode
+}
+interface AppPropsWithLayout extends AppProps {
+  Component: NextPageWithLayout
+}
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const Layout = Component.layout ?? ((page) => page)
+
   return (
     <>
       <Head>
-        <title>openvpn automation</title>
+        <title>OpenVPN Management & Automation</title>
       </Head>
 
-      <Component {...pageProps} />
+      {Layout(<Component {...pageProps} />)}
     </>
   )
 }
