@@ -27,7 +27,7 @@ export default function handler(
   // const output = execFileSync('./scripts/createNewProfile.sh') //TODO: test this on the server
   const output = execFileSync(
     process.platform === 'win32' ? '.\\scripts\\demo.ps1' : './scripts/demo.sh',
-    [req.body.profileName, req.body.startDate, req.body.subscriptionLength],
+    [req.body.name, req.body.startDate, req.body.subscriptionLength],
     {
       encoding: 'utf-8',
       shell: process.platform === 'win32' ? 'powershell.exe' : '/bin/bash',

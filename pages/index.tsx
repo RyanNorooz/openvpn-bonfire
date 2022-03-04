@@ -1,59 +1,39 @@
+import type { GetServerSideProps } from 'next'
 import DefaultLayout from '@/components/DefaultLayout'
+import OVPNProfileListItem from '@/components/OVPNProfileListItem'
+import { openDB } from '@/db'
+import type { OVPNProfile } from '@/lib/types'
 
 Home.layout = (page: React.ReactElement) => (
   <DefaultLayout>{page}</DefaultLayout>
 )
 
-export default function Home() {
+interface Props {
+  OVPNProfiles: OVPNProfile[]
+}
+
+export default function Home({ OVPNProfiles }: Props) {
   return (
-    <main className="w-full px-2 py-8">
+    <main className="w-full min-h-[30rem] px-2 py-8 lg:px-10">
       <h1 className="mb-3 text-5xl">Profiles</h1>
       <p className="mb-6">
         OpenVPN profiles blah blah blah fill this later //TODO
       </p>
 
-      <ul className="flex flex-col gap-2 p-2 max-w-20 bg-gray-100 dark:bg-neutral-800 rounded-xl">
-        {[...Array(25)].map((index) => (
-          <li
-            key={index}
-            className="h-12 px-3 border-2 shadow rounded-md bg-orange-300 flex items-center "
-          >
-            <strong className="text-[color:var(--c-primary)]">
-              name:&nbsp;
-            </strong>
-            <span>
-              {/* random word is generated each time */}
-              randomProfileName-
-              {Math.random().toString(36).substring(2, 20)}
-            </span>
-
-            {/* ===================================================== */}
-            <span className="text-xl font-black">&nbsp;|&nbsp;</span>
-            {/* ===================================================== */}
-
-            <strong className="text-[color:var(--c-primary)]">
-              startDate:&nbsp;
-            </strong>
-            <span>
-              {/* random word is generated each time */}
-              randomStartDate-{Math.random().toString(36).substring(2, 20)}
-            </span>
-
-            {/* ===================================================== */}
-            <span className="text-xl font-black">&nbsp;|&nbsp;</span>
-            {/* ===================================================== */}
-
-            <strong className="text-[color:var(--c-primary)]">
-              subscriptionLength:&nbsp;
-            </strong>
-            <span>
-              {/* random word is generated each time */}
-              randomSubscriptionLength-
-              {Math.random().toString(36).substring(2, 20)}
-            </span>
-          </li>
+      <ol className="flex flex-col gap-2 p-2 list-decimal list-inside bg-gray-100 shadow-md max-w-20 dark:bg-gray-700 rounded-xl">
+        {OVPNProfiles.map((profile) => (
+          <OVPNProfileListItem OVPNProfile={profile} key={profile.name} />
         ))}
-      </ul>
+      </ol>
     </main>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const db = await openDB()
+  const profiles = await db.all('SELECT * FROM profile')
+
+  return {
+    props: { OVPNProfiles: profiles }, // will be passed to the page component as props
+  }
 }
