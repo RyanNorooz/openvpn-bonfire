@@ -12,6 +12,14 @@
 /.next/
 /out/
 
+# temporary 
+*.tmp
+tmp/
+
+# db
+*.db
+*.sqlite
+
 # production
 /build
 
