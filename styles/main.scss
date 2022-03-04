@@ -2,13 +2,14 @@ $FONT: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
 :root {
-  --c-primary: #b45a46;
+  --c-primary: #ff7252;
+  --body-text: #222;
   --bg: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-primary: #ff886c;
+    --body-text: #fff;
     --bg: #121212;
   }
 }
@@ -17,6 +18,7 @@ $FONT: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 *::before,
 *::after {
   box-sizing: border-box;
+  // outline: olivedrab solid 2px !important; //? use for debugging css positioning
 }
 
 html,
@@ -26,7 +28,7 @@ body {
   scroll-behavior: smooth;
 
   background: var(--bg);
-  color: #b45a46;
+  color: var(--body-text);
   accent-color: var(--c-primary);
   color-scheme: dark light;
 
@@ -51,4 +53,5 @@ h4,
 h5,
 h6 {
   font-weight: 950;
+  color: var(--c-primary);
 }

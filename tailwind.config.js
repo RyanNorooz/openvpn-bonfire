@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   // darkMode: 'media', // 'media' or 'class' or false
 
@@ -14,6 +17,11 @@ module.exports = {
   ],
 
   theme: {
+    screens: {
+      xs: '475px',
+      ...defaultTheme.screens,
+    },
+
     extend: {
       fontWeight: {
         extrablack: 950,

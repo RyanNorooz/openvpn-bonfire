@@ -35,7 +35,10 @@ export default function MyModal(props: Props) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+            <Dialog.Overlay
+              as="div"
+              className="fixed inset-0 bg-black opacity-40"
+            />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -45,6 +48,7 @@ export default function MyModal(props: Props) {
           >
             &#8203;
           </span>
+
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -61,12 +65,13 @@ export default function MyModal(props: Props) {
               >
                 Boom...! it&apos;s done.
               </Dialog.Title>
-              <div className="mt-2">
+
+              <Dialog.Description as="div" className="mt-2">
                 <p className="text-sm text-gray-500">
                   your profile has been successfully created. you can view the
                   state of your profiles in the home page
                 </p>
-              </div>
+              </Dialog.Description>
 
               <div className="mt-4">
                 <button

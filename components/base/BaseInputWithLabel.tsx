@@ -16,7 +16,7 @@ export default function BaseInputWithLabel(allProps: Props) {
       <input
         {...props}
         className={
-          'block w-full mb-3 bg-gray-100 border-transparent rounded-md dark:bg-neutral-700 focus:border-gray-500 focus:bg-white dark:focus:bg-neutral-900 focus:ring-0' +
+          'block w-full mb-3 bg-gray-100 text-[color:var(--body-text)] border-transparent rounded-md dark:bg-neutral-700 focus:border-gray-500 focus:bg-white dark:focus:bg-neutral-900 focus:ring-0' +
           (` ${className}` || '')
         }
       />
