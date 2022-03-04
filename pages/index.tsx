@@ -1,102 +1,59 @@
-import type { GetStaticProps } from 'next'
-import Head from 'next/head'
-import { useState } from 'react'
-import BaseInputWithLabel from '@/components/base/BaseInputWithLabel'
-import Modal from '@/components/Modal'
+import TheHeader from '@/components/TheHeader'
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  interface VPNProfileForm {
-    profileName: { value: string }
-    startDate: { value: string }
-    subscriptionLength: { value: string }
-  }
-
-  function requestCreateNewProfile(e: React.SyntheticEvent) {
-    e.preventDefault()
-    setIsModalOpen(true)
-
-    const form = e.target as typeof e.target & VPNProfileForm
-    const data = {
-      profileName: form.profileName?.value,
-      startDate: form.startDate?.value,
-      subscriptionLength: form.subscriptionLength?.value,
-    }
-    console.log('data:', data)
-
-    fetch('/api/newprofile', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('Success:', data)
-      })
-      .catch((err) => {
-        console.error('Error:', err)
-      })
-  }
-
   return (
     <>
-      <Head>
-        <title>Create new profile - OpenVPN</title>
-      </Head>
+      <TheHeader />
 
-      <div className="grid w-full h-full min-h-screen place-items-center">
-        <div className="w-full max-w-[25em] rounded-2xl lg:dark:shadow-lg lg:dark:bg-neutral-800 prose-lg py-8 px-6 text-center">
-          <h1 className="mb-3 text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">
-            Hello Internet!
-          </h1>
+      <main className="w-full px-2 py-8">
+        <h1 className="mb-3 text-5xl">Profiles</h1>
+        <p className="mb-6">
+          OpenVPN profiles blah blah blah fill this later //TODO
+        </p>
 
-          <p className="mt-0 mb-12">
-            create openvpn profiles with expiration date
-          </p>
-
-          <form
-            onSubmit={requestCreateNewProfile}
-            className="flex flex-col gap-2"
-          >
-            <BaseInputWithLabel
-              labelText="Profile name"
-              title="no spaces, only number and letters, dash and underscore allowed"
-              type="text"
-              id="profileName"
-              name="profileName"
-              pattern="^[\w-]+$"
-              required
-            />
-
-            <BaseInputWithLabel
-              labelText="Start date"
-              type="date"
-              id="startDate"
-              name="startDate"
-              required
-            />
-
-            <BaseInputWithLabel
-              labelText="Subscription length (months...)"
-              type="number"
-              id="subscriptionLength"
-              name="subscriptionLength"
-              min="1"
-              required
-            />
-
-            <button
-              type="submit"
-              className="px-4 py-2 mt-32 text-2xl font-bold text-white rounded-md bg-stone-900 hover:text-black hover:bg-[color:var(--c-primary)] transition-colors duration-200"
+        <ul className="flex flex-col gap-2 p-2 max-w-20 bg-gray-100 dark:bg-neutral-800 rounded-xl">
+          {[...Array(25)].map((index) => (
+            <li
+              key={index}
+              className="h-12 px-3 border-2 shadow rounded-md bg-orange-300 flex items-center "
             >
-              runScript...!
-            </button>
-          </form>
-        </div>
-      </div>
+              <strong className="text-[color:var(--c-primary)]">
+                name:&nbsp;
+              </strong>
+              <span>
+                {/* random word is generated each time */}
+                randomProfileName-
+                {Math.random().toString(36).substring(2, 20)}
+              </span>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+              {/* ===================================================== */}
+              <span className="text-xl font-black">&nbsp;|&nbsp;</span>
+              {/* ===================================================== */}
+
+              <strong className="text-[color:var(--c-primary)]">
+                startDate:&nbsp;
+              </strong>
+              <span>
+                {/* random word is generated each time */}
+                randomStartDate-{Math.random().toString(36).substring(2, 20)}
+              </span>
+
+              {/* ===================================================== */}
+              <span className="text-xl font-black">&nbsp;|&nbsp;</span>
+              {/* ===================================================== */}
+
+              <strong className="text-[color:var(--c-primary)]">
+                subscriptionLength:&nbsp;
+              </strong>
+              <span>
+                {/* random word is generated each time */}
+                randomSubscriptionLength-
+                {Math.random().toString(36).substring(2, 20)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </main>
     </>
   )
 }
