@@ -1,112 +1,85 @@
-// import Image from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Icon } from '@iconify/react'
-import { useEffect, useState } from 'react'
-// import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
-// import faviconDark from '@/public/favicon-dark.ico'
-
-function makeHeaderTransparent() {
-  const headerBlurBackdrop = document.querySelector('.header-backdrop-blur')
-  if (!headerBlurBackdrop) return
-  window.scrollY > window.innerHeight - 30
-    ? headerBlurBackdrop.classList.add('opaque')
-    : headerBlurBackdrop.classList.remove('opaque')
-}
+import { useEffect } from 'react'
+import openvpnLogo from '@/public/openvpnlogo.webp'
 
 function checkAndCloseHamburgerMenu(e: MouseEvent) {
-  const menuWasClicked = (e.target as HTMLElement).matches(
-    `.nav__menu, .nav__list, .nav__item, .nav__link,
-    .nav__toggle, .nav__toggle svg, .nav__toggle svg path`
-  )
+  const menuWasClicked = (e.target as HTMLElement).matches(`svg svg path`)
   if (menuWasClicked) return
   document.getElementById('nav-menu')?.classList.toggle('show', false)
 }
 
 export default function TheHeader() {
-  // const { t } = useTranslation('common')
-  const router = useRouter()
-  const [currentPath] = useState(router.asPath)
-
   useEffect(() => {
-    window.addEventListener('scroll', makeHeaderTransparent)
     window.addEventListener('click', checkAndCloseHamburgerMenu)
     return () => {
-      window.removeEventListener('scroll', makeHeaderTransparent)
       window.removeEventListener('click', checkAndCloseHamburgerMenu)
     }
   }, [])
 
   return (
-    <header className="l-header">
-      <div className="header-backdrop-blur absolute w-full h-[var(--header-height)] pointer-events-none -z-10" />
-      <nav className="nav bd-grid">
-        <div className="flex items-center">
-          <div className="mie-3 w-9 h-9">
-            {/* <Image src={faviconDark} alt="Ryan Norooz logo" /> */}
-          </div>
-          <a href="#" className="nav__logo font-extrablack">
-            {/* {t('header.logoText')} */}
+    <header className="sticky top-0 z-20 w-full py-6">
+      <div className="absolute inset-0 shadow-md -z-10 bg-neutral-900/80 backdrop-blur-sm" />
+      <div className="flex items-center justify-between px-4 mx-auto xl:max-w-7xl lg:max-w-5xl md:max-w-3xl md:px-2">
+        <Link href="/">
+          <a>
+            <div className="flex items-center space-x-2 ">
+              <div className="w-10 h-10 mr-5">
+                <Image src={openvpnLogo} alt="OpenVPN logo" />
+              </div>
+
+              <h1 className="text-xl">OpenVPN Management</h1>
+            </div>
           </a>
-        </div>
+        </Link>
 
-        <div className="nav__menu" id="nav-menu">
-          <ul className="nav__list">
-            <li className="nav__item">
-              <a href="#home" className="nav__link active">
-                {/* {t('header.nav.home')} */}
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <a href="#about" className="nav__link">
-                {/* {t('header.nav.about')} */}
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <a href="#skills" className="nav__link">
-                {/* {t('header.nav.skills')} */}
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <a href="#portfolio" className="nav__link">
-                {/* {t('header.nav.portfolio')} */}
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <a href="#contact" className="nav__link">
-                {/* {t('header.nav.contact')} */}
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <Link
-                passHref
-                href={currentPath}
-                locale={router.locale === 'en' ? 'fa' : 'en'}
-              >
-                <div className="flex items-center gap-1 font-bold cursor-pointer">
-                  <Icon icon="bx:bx-globe" />
-                  {router.locale === 'en' ? 'فا' : 'EN'}
-                </div>
+        <nav>
+          <ul className="hidden space-x-6 font-semibold md:space-x-8 md:flex">
+            <li className="relative group">
+              <Link href="/newprofile">
+                <a className="rounded-lg outline-none group focus:ring focus:ring-purple-500 focus:ring-opacity-25">
+                  createNewProfile
+                </a>
               </Link>
+              <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+            </li>
+
+            <li className="relative group">
+              <Link href="/revokeprofile">
+                <a className="rounded-lg outline-none focus:ring focus:ring-purple-500 focus:ring-opacity-25">
+                  revokeExistingProfile
+                </a>
+              </Link>
+              <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
+            </li>
+
+            <li className="relative group">
+              {/* <Link href="/easteregg"> */}
+              <a
+                href="https://youtu.be/dQw4w9WgXcQ"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="rounded-lg outline-none focus:ring focus:ring-purple-500 focus:ring-opacity-25"
+              >
+                easterEgg
+              </a>
+              {/* </Link> */}
+              <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
             </li>
           </ul>
-        </div>
 
-        <div
-          className="nav__toggle"
-          id="nav-toggle"
-          onClick={() =>
-            document.getElementById('nav-menu')?.classList.toggle('show')
-          }
-        >
-          <Icon icon="bx:bx-menu" />
-        </div>
-      </nav>
+          <button
+            className="flex p-2 text-3xl text-white transition-all rounded-full outline-none md:hidden hover:bg-gray-100/80 focus:ring focus:ring-purple-500 focus:ring-opacity-25 active:bg-gray-200"
+            id="nav-toggle"
+            onClick={() =>
+              document.getElementById('nav-menu')?.classList.toggle('show')
+            }
+          >
+            <Icon icon="bx:bx-menu" />
+          </button>
+        </nav>
+      </div>
     </header>
   )
 }
