@@ -2,29 +2,27 @@
 export default (
   <>
     {/* Primary Meta Tags */}
-    <title>Ryan Norooz - Web Designer & Developer</title>
-    <meta name="title" content="Ryan Norooz - Web Designer & Developer" />
-    <meta name="description" content="I can design and develop your next PWA app. I specialize in front-end and frameworks like React and Vue.js" />
+    <title>OpenVPN Management & Automation</title>
+    <meta name="title" content="OpenVPN Management & Automation" />
+    <meta name="description" content="Create and manage OpenVPN profiles with expiration date" />
 
     {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ryannorooz.vercel.app/" />
-    <meta property="og:title" content="Ryan Norooz - Web Designer & Developer" />
-    <meta property="og:description" content="I can design and develop your next PWA app. I specialize in front-end and frameworks like React and Vue.js" />
+    <meta property="og:title" content="OpenVPN Management & Automation" />
+    <meta property="og:description" content="Create and manage OpenVPN profiles with expiration date" />
     <meta property="og:image" content="/link-preview.png" />
 
     {/* Twitter */}
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://ryannorooz.vercel.app/" />
-    <meta property="twitter:title" content="Ryan Norooz - Web Designer & Developer" />
-    <meta property="twitter:description" content="I can design and develop your next PWA app. I specialize in front-end and frameworks like React and Vue.js" />
+    <meta property="twitter:title" content="OpenVPN Management & Automation" />
+    <meta property="twitter:description" content="Create and manage OpenVPN profiles with expiration date" />
     <meta property="twitter:image" content="/link-preview.png" />
 
     {/* Search Engines */}
     <meta name="author" content="Ryan Norooz" />
-    <meta name="keywords" content="programer, developer, frontend, nextjs, nuxtjs, react, vue, portfolio" />
-    <meta name="robots" content="index, follow" />
-    <meta name="revisit-after" content="14 days" />
+    <meta name="robots" content="noindex"/>
     <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="language" content="English" />
   </>

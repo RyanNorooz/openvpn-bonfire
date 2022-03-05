@@ -12,6 +12,7 @@ import Head from 'next/head'
 import router from 'next/router'
 import nProgress from 'nprogress'
 import '@/styles/nprogress.scss'
+import SEOMetaTags from '@/components/SEOMetaTags'
 
 router.events.on('routeChangeStart', nProgress.start)
 router.events.on('routeChangeError', nProgress.done)
@@ -29,9 +30,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
-      <Head>
-        <title>OpenVPN Management & Automation</title>
-      </Head>
+      <Head>{SEOMetaTags}</Head>
 
       {Layout(<Component {...pageProps} />)}
     </>
