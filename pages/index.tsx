@@ -20,7 +20,7 @@ export default function Home({ OVPNProfiles }: Props) {
         OpenVPN profiles blah blah blah fill this later //TODO
       </p>
 
-      <ol className="flex flex-col gap-2 p-2 list-decimal list-inside bg-gray-100 shadow-md max-w-20 dark:bg-gray-700 rounded-xl">
+      <ol className="flex flex-col gap-2 p-2 list-decimal list-inside dark:shadow-md max-w-20 dark:bg-gray-700 rounded-xl">
         {OVPNProfiles.map((profile) => (
           <OVPNProfileListItem OVPNProfile={profile} key={profile.name} />
         ))}

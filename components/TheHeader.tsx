@@ -19,7 +19,7 @@ export default function TheHeader() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-20 w-full py-6">
+    <header className="sticky top-0 z-20 w-full py-6 text-white">
       <div className="absolute inset-0 shadow-md -z-10 bg-neutral-900/80 backdrop-blur" />
 
       <div className="flex items-center justify-between px-4 mx-auto xl:max-w-7xl lg:max-w-5xl md:max-w-3xl md:px-2">
