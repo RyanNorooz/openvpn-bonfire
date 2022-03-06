@@ -1,0 +1,11 @@
+[Unit]
+Description=an automation for openvpn accounting subject
+
+[Service]
+User=root
+WorkingDirectory=
+ExecStart=pnpm start -- -p 4000 -H 127.0.0.1
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

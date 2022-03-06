@@ -2,13 +2,13 @@ name: build NextJS app
 
 on:
   push:
-    branches: [branchnamehere]
+    branches: [main]
   pull_request:
-    branches: [branchnamehere]
+    branches: [main]
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout source 💾
@@ -35,6 +35,9 @@ jobs:
         with:
           version: 6.20.3
 
+      - name: Check/Enable Service 🧑‍🏭
+        run: python3 ./scripts/setup.py install
+
       - name: Install deps 📦
         run: pnpm i
 
@@ -44,3 +47,6 @@ jobs:
 
       - name: Build 🔨
         run: pnpm build
+
+      - name: Restart Service 🏃
+        run: python3 ./scripts/setup.py restart
