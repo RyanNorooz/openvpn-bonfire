@@ -14,7 +14,7 @@ jobs:
       - name: Checkout source 💾
         uses: actions/checkout@v2
 
-      - name: Cache pnpm modules ⚡
+      - name: Cache pnpm modules & NextJS builds ⚡
         id: pnpmCacheStep
         uses: actions/cache@v2
         env:
