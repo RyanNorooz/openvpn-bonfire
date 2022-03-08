@@ -1,8 +1,8 @@
 import type { GetServerSideProps } from 'next'
 import DefaultLayout from '@/components/DefaultLayout'
 import OVPNProfileListItem from '@/components/OVPNProfileListItem'
-import { openDB } from '@/db'
 import type { OVPNProfile } from '@/lib/types'
+import { openDB } from '@/db'
 
 Home.layout = (page: React.ReactElement) => (
   <DefaultLayout>{page}</DefaultLayout>
@@ -34,6 +34,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const profiles = await db.all('SELECT * FROM profile')
 
   return {
-    props: { OVPNProfiles: profiles }, // will be passed to the page component as props
+    props: { OVPNProfiles: profiles },
   }
 }

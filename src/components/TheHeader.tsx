@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Icon } from '@iconify/react'
 import { useEffect } from 'react'
-import openvpnLogo from '@/public/openvpnlogo.webp'
+import openvpnLogo from '@/../public/openvpnlogo.webp'
 
 function checkAndCloseHamburgerMenu(e: MouseEvent) {
   const menuWasClicked = (e.target as HTMLElement).matches(`svg svg path`)
