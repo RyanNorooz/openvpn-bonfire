@@ -4,9 +4,9 @@
   "description": "openvpn automation for personal use",
   "author": "Ryan Norooz",
   "scripts": {
-    "dev": "node ./db/databaseSetup.js && next dev",
+    "dev": "node ./src/db/databaseDevSetup.js && next dev",
     "build": "next build",
-    "start": " next start",
+    "start": "node ./src/db/databaseSetup.js && next start",
     "lint": "next lint",
     "prepare": "husky install"
   },

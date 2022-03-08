@@ -7,10 +7,7 @@ async function setup() {
     filename: './tmp/db.sqlite',
     driver: sqlite3.Database,
   })
-  await db.migrate({ force: true })
-
-  const profiles = await db.all('SELECT * FROM profile')
-  console.log('ALL PROFILES', JSON.stringify(profiles, null, 2))
+  await db.migrate()
 }
 
 setup()
