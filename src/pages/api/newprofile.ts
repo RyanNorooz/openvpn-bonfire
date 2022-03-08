@@ -1,16 +1,9 @@
-import { execSync, execFileSync } from 'child_process'
+import { execFileSync } from 'child_process'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 interface ResponseData {
-  text: string
-  pwd: string
-  output: string
-}
-
-export interface VPNFormData {
-  profileName: string
-  startDate: string
-  subscriptionLength: string
+  output?: string
+  err?: unknown
 }
 
 export default function handler(
@@ -19,25 +12,17 @@ export default function handler(
 ) {
   console.log('req.body:', req.body)
 
-  const pwd = execSync(process.platform === 'win32' ? 'cd' : 'pwd', {
-    encoding: 'utf-8',
-  })
-  console.log('pwd:', pwd)
+  // const output = execFileSync('./src/scripts/createNewProfile.sh') //TODO: test this on the server
+  try {
+    const output = execFileSync(
+      './src/scripts/createNewProfile.sh',
+      [req.body.name, req.body.startDate, req.body.subscriptionLength],
+      { encoding: 'utf-8' }
+    )
 
-  // const output = execFileSync('./scripts/createNewProfile.sh') //TODO: test this on the server
-  const output = execFileSync(
-    process.platform === 'win32' ? '.\\scripts\\demo.ps1' : './scripts/demo.sh',
-    [req.body.name, req.body.startDate, req.body.subscriptionLength],
-    {
-      encoding: 'utf-8',
-      shell: process.platform === 'win32' ? 'powershell.exe' : '/bin/bash',
-    }
-  )
-  console.log('output:', output)
-
-  res.status(200).json({
-    text: "yay...! you've got 200 status code\nthis is a json response that you are supposed to get.",
-    pwd,
-    output,
-  })
+    console.log('createNewProfile.sh OUTPUT:', output)
+    return res.status(200).json({ output })
+  } catch (err) {
+    return res.status(200).json({ err })
+  }
 }

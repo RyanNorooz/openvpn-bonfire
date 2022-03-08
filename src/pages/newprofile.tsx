@@ -3,6 +3,7 @@ import { useState } from 'react'
 import BaseInputWithLabel from '@/components/base/BaseInputWithLabel'
 import Modal from '@/components/Modal'
 import DefaultLayout from '@/components/DefaultLayout'
+import type { OVPNProfile } from '@/lib/types'
 
 Home.layout = (page: React.ReactElement) => (
   <DefaultLayout>{page}</DefaultLayout>
@@ -22,8 +23,8 @@ export default function Home() {
     setIsModalOpen(true)
 
     const form = e.target as typeof e.target & VPNProfileForm
-    const data = {
-      profileName: form.profileName?.value,
+    const data: OVPNProfile = {
+      name: form.profileName?.value,
       startDate: form.startDate?.value,
       subscriptionLength: form.subscriptionLength?.value,
     }
