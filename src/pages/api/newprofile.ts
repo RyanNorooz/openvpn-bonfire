@@ -2,8 +2,7 @@ import { execFileSync } from 'child_process'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 interface ResponseData {
-  output?: string
-  err?: unknown
+  output: string
 }
 
 export default function handler(
@@ -21,8 +20,9 @@ export default function handler(
     )
 
     console.log('createNewProfile.sh OUTPUT:', output)
-    return res.status(200).json({ output })
+    res.status(200).json({ output })
   } catch (err) {
-    return res.status(200).json({ err })
+    console.error('createNewProfile.sh ERROR OCCURRED:', err)
+    res.status(500).json({ output: 'createNewProfile.sh ERROR OCCURRED' })
   }
 }
