@@ -19,13 +19,13 @@ new_client () {
     } > ~/"$client".ovpn
 }
 
-unsanitized_client="$1"
+unsanitized_client=$1
 client=$(sed 's/[^0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-]/_/g' <<< "$unsanitized_client")
 # if $client is already taken or is a reserved word, exit.
-if [[ -z "$client" || -e /etc/openvpn/server/easy-rsa/pki/issued/"$client".crt ]]; do
+if [[ -z "$client" || -e /etc/openvpn/server/easy-rsa/pki/issued/"$client".crt ]]; then
     echo "$client: invalid name."
     exit 1
-done
+fi
 
 
 cd /etc/openvpn/server/easy-rsa/
