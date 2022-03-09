@@ -14,18 +14,48 @@ interface Props {
 
 export default function Home({ OVPNProfiles }: Props) {
   return (
-    <main className="w-full min-h-[30rem] px-2 py-8 lg:px-10">
-      <h1 className="mb-3 text-5xl">Profiles</h1>
-      <p className="mb-6">
-        OpenVPN profiles blah blah blah fill this later //TODO
-      </p>
+    <>
+      <main className="w-full px-2 py-8 lg:px-10">
+        <h1 className="mb-3 text-5xl">Profiles</h1>
+        <p className="mb-8">
+          OpenVPN profiles created using this automation tool
+        </p>
 
-      <ol className="flex flex-col gap-2 p-2 list-decimal list-inside dark:shadow-md max-w-20 dark:bg-gray-700 rounded-xl">
-        {OVPNProfiles.map((profile) => (
-          <OVPNProfileListItem OVPNProfile={profile} key={profile.name} />
-        ))}
-      </ol>
-    </main>
+        <div className="relative py-8 overflow-hidden not-prose bg-slate-100 rounded-xl dark:bg-slate-800/25 shadow">
+          <table className="w-full text-sm border-collapse table-auto">
+            <thead className="text-slate-500 dark:text-slate-400">
+              <tr>
+                <th className="p-4 pt-0 pb-3 pl-8 font-medium text-left border-b dark:border-slate-600">
+                  name
+                </th>
+                <th className="p-4 pt-0 pb-3 font-medium text-left border-b dark:border-slate-600">
+                  startDate
+                </th>
+                <th className="p-4 pt-0 pb-3 pr-8 font-medium text-left border-b dark:border-slate-600">
+                  subscriptionLength
+                </th>
+              </tr>
+            </thead>
+
+            <tbody className="bg-white dark:bg-slate-800 font-semibold text-slate-700 dark:text-slate-200">
+              {OVPNProfiles.map((profile) => (
+                <tr key={profile.name}>
+                  <td className="p-4 pl-8 border-b border-slate-200 dark:border-slate-700">
+                    {profile.name}
+                  </td>
+                  <td className="p-4 border-b border-slate-200 dark:border-slate-700">
+                    {profile.startDate}
+                  </td>
+                  <td className="p-4 pr-8 border-b border-slate-200 dark:border-slate-700">
+                    {profile.subscriptionLength}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </>
   )
 }
 
