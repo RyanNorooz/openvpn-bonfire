@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # This option could be documented a bit better and maybe even be simplified
 # ...but what can I say, I want some sleep too  -# i feel you bruh
 number_of_clients=$(tail -n +2 /etc/openvpn/server/easy-rsa/pki/index.txt | grep -c "^V")
