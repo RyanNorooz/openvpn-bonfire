@@ -4,7 +4,7 @@ const { open } = require('sqlite')
 
 async function setup() {
   const db = await open({
-    filename: '@/../db.sqlite',
+    filename: process.platform === 'win32' ? './db.sqlite' : '../db.sqlite',
     driver: sqlite3.Database,
   })
   await db.migrate()

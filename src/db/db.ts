@@ -3,7 +3,7 @@ import { open } from 'sqlite'
 
 export function openDB() {
   return open({
-    filename: '@/../db.sqlite',
+    filename: process.platform === 'win32' ? './db.sqlite' : '../db.sqlite',
     driver: sqlite3.Database,
   })
 }
