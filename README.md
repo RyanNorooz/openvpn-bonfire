@@ -15,7 +15,7 @@ made with Next.js
 - **[Development](https://nextjs.org/docs/getting-started#manual-setup) -** _run dev server_ \
   `npm run dev` | `yarn dev` | `pnpm dev`
 
-- **[Build](https://nextjs.org/docs/getting-started#manual-setup) -** _build admin panel for production_ \
+- **[Build](https://nextjs.org/docs/getting-started#manual-setup) -** _build for production_ \
   `npm run build` | `yarn build` | `pnpm build`
 
 - **[Start](https://nextjs.org/docs/getting-started#manual-setup) -** _run production server_ \
