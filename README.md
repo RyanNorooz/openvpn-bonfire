@@ -1,6 +1,23 @@
 # Automation Tool for OpenVPN Server
 
-made with Next.js
+Manage OpenVPN profiles from the web interface.
+
+### features:
+
+- Create
+- Revoke
+- Download
+- mass create profiles
+- create password protected profiles
+- better security compared to OpenVPN defaults
+
+## Screenshots
+
+main page
+![main page](./.github/screenshots/1.png)
+
+createprofile page
+![createprofile page](./.github/screenshots/2.png)
 
 ## Install Dependencies
 
@@ -15,7 +32,7 @@ made with Next.js
 - **[Development](https://nextjs.org/docs/getting-started#manual-setup) -** _run dev server_ \
   `npm run dev` | `yarn dev` | `pnpm dev`
 
-- **[Build](https://nextjs.org/docs/getting-started#manual-setup) -** _build admin panel for production_ \
+- **[Build](https://nextjs.org/docs/getting-started#manual-setup) -** _build for production_ \
   `npm run build` | `yarn build` | `pnpm build`
 
 - **[Start](https://nextjs.org/docs/getting-started#manual-setup) -** _run production server_ \
