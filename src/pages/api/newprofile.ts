@@ -1,4 +1,4 @@
-import { execFileSync } from 'child_process'
+import { execSync } from 'child_process'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { openDB } from '@/db'
 import type { OVPNProfile } from '@/lib/types'
@@ -16,10 +16,11 @@ export default async function handler(
 
   // const output = execFileSync('./src/scripts/createNewProfile.sh') //TODO: test this on the server
   try {
-    const output = execFileSync(
-      './src/scripts/createNewProfile.sh',
-      [reqData.name],
-      { encoding: 'utf-8' }
+    const output = execSync(
+      `export MENU_OPTION="1" &&
+      export CLIENT="foo" &&
+      export PASS="1" &&
+      ./src/lib/openvpn.sh`
     )
     const db = await openDB()
     const sql =
@@ -32,11 +33,21 @@ export default async function handler(
     )
 
     console.log('createNewProfile.sh OUTPUT:', output)
-    res.status(200).json({ output })
+    res.status(200).json({ output: output.toString() })
   } catch (err) {
     console.error('createNewProfile.sh ERROR OCCURRED:', err)
     res
       .status(500)
       .json({ output: 'createNewProfile.sh ERROR OCCURRED: \n' + String(err) })
   }
+}
+
+for (const i in [...Array(10)]) {
+  const output = execSync(
+    `export MENU_OPTION="1" &&
+    export CLIENT="ryan-${i.toString().padStart(2, '0')}" &&
+    export PASS="1" &&
+    ./src/lib/openvpn.sh`
+  )
+  console.log(output)
 }
