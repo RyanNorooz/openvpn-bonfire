@@ -10,11 +10,11 @@ async function setup() {
   await db.migrate({ force: true })
 
   const sql =
-    'INSERT INTO Profile (name, startDate, subscriptionLength) VALUES (?, ?, ?)'
+    'INSERT INTO Profile (name, creator, startDate, subscriptionLength) VALUES (?, ?, ?, ?)'
 
-  await db.run(sql, 'test-1', '2022-3-1', 1)
-  await db.run(sql, 'test-2', '2022-3-2', 2)
-  await db.run(sql, 'test-3', '2022-3-3', 3)
+  await db.run(sql, 'test-1', 'rayan', '2022-3-1', 1)
+  await db.run(sql, 'test-2', 'rayan', '2022-3-2', 2)
+  await db.run(sql, 'test-3', 'rayan', '2022-3-3', 3)
 
   const profiles = await db.all('SELECT * FROM Profile')
   console.log('ALL PROFILES', profiles)

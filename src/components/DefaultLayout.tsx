@@ -5,7 +5,7 @@ const DefaultLayout: React.FC = function ({ children }) {
   return (
     <>
       <TheHeader />
-      <main>{children}</main>
+      <main className="pb-5">{children}</main>
       <TheFooter />
     </>
   )

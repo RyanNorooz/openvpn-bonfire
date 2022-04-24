@@ -4,6 +4,7 @@ import BaseInputWithLabel from '@/components/base/BaseInputWithLabel'
 import Modal from '@/components/Modal'
 import DefaultLayout from '@/components/DefaultLayout'
 import type { OVPNProfile } from '@/lib/types'
+import CreatorSelectElement from '@/components/NewProfilePage/CreatorSelectElement'
 
 Home.layout = (page: React.ReactElement) => (
   <DefaultLayout>{page}</DefaultLayout>
@@ -11,11 +12,13 @@ Home.layout = (page: React.ReactElement) => (
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [creatorName, setCreatorName] = useState('')
 
   interface VPNProfileForm {
     profileName: { value: string }
     startDate: { value: string }
     subscriptionLength: { value: string }
+    creator: { value: string }
   }
 
   function requestCreateNewProfile(e: React.SyntheticEvent) {
@@ -27,6 +30,7 @@ export default function Home() {
       name: form.profileName?.value,
       startDate: form.startDate?.value,
       subscriptionLength: form.subscriptionLength?.value,
+      creator: creatorName,
     }
     console.log('data:', data)
 
@@ -51,12 +55,12 @@ export default function Home() {
       </Head>
 
       <div className="grid w-full h-full min-h-screen place-items-center text-[color:var(--c-primary)]">
-        <div className="w-full max-w-[25em] rounded-2xl lg:dark:shadow-lg lg:dark:bg-neutral-800 prose-lg py-8 px-6 text-center">
-          <h1 className="mb-3 text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">
+        <div className="w-full max-w-[30rem] rounded-2xl lg:dark:shadow-lg lg:dark:bg-neutral-800 py-8 px-6 prose-lg text-center">
+          <h1 className="mb-3 text-5xl text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">
             Hello Internet!
           </h1>
 
-          <p className="mt-0 mb-12">
+          <p className="mt-0 mb-12 text-lg">
             create openvpn profiles with expiration date
           </p>
 
@@ -64,6 +68,7 @@ export default function Home() {
             onSubmit={requestCreateNewProfile}
             className="flex flex-col gap-2"
           >
+            <CreatorSelectElement selectChangedHandler={setCreatorName} />
             <BaseInputWithLabel
               labelText="Profile name"
               title="no spaces, only number and letters, dash and underscore allowed"
@@ -93,7 +98,7 @@ export default function Home() {
 
             <button
               type="submit"
-              className="px-4 py-2 mt-32 text-2xl font-bold text-white rounded-md bg-stone-900 hover:text-black hover:bg-[color:var(--c-primary)] transition-colors duration-200"
+              className="px-4 py-2 mt-12 text-2xl font-bold text-white rounded-md bg-stone-900 hover:text-black hover:bg-[color:var(--c-primary)] transition-colors duration-200"
             >
               runScript...!
             </button>
