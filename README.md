@@ -2,27 +2,28 @@
 
 Manage OpenVPN profiles from the web interface.
 
-**⚠Work in progress! might be highly unstable**
+**⚠ Work in progress! might be highly unstable**
 
 _**DISCLAIMER!** This project was created for experienced users (system administrators) and private (e.g., protected by network policies) environments only. Thus, it is not implemented with security in mind (e.g., it doesn't strictly check all parameters passed by users, etc.). It also relies heavily on files and fails if required files aren't available._
 
+### features
 
-### features:
-
-- Create
-- Revoke
-- Download
-- mass create profiles
-- create password protected profiles
-- better security compared to OpenVPN defaults
+- [ ] ✏ Create
+- [ ] ⛔ Revoke
+- [ ] ⬇ Download
+- [ ] ⚡ mass create profiles
+- [ ] 🔑 create password protected profiles
+- [x] 🔐 better security compared to OpenVPN defaults
 
 ## Screenshots
 
 main page
-![main page](./.github/screenshots/1.png)
+
+<img src="./.github/screenshots/1.png" alt="main page" width="500" />
 
 createprofile page
-![createprofile page](./.github/screenshots/2.png)
+
+<img src="./.github/screenshots/2.png" alt="createprofile page" width="500" />
 
 ## Install Dependencies
 
