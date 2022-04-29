@@ -23,7 +23,7 @@ export default function Home({ OVPNProfiles }: Props) {
           OpenVPN profiles created using this automation tool
         </p>
 
-        <div className="relative py-8 overflow-hidden shadow not-prose bg-slate-300/90 rounded-xl dark:bg-slate-400/10">
+        <div className="relative py-8 overflow-hidden shadow bg-slate-300/90 rounded-xl dark:bg-slate-400/10">
           <table className="w-full text-sm border-collapse table-auto">
             <thead className="text-slate-500 dark:text-slate-400">
               <tr>
@@ -68,9 +68,14 @@ export default function Home({ OVPNProfiles }: Props) {
                   <td className="p-4">{profile.startDate}</td>
                   <td className="p-4 pr-8">{profile.subscriptionLength}</td>
                   <td className="flex gap-1 p-4 pr-8">
-                    <button className="px-3 py-1 bg-blue-500 rounded">
+                    <a
+                      className="px-3 py-1 bg-blue-500 rounded"
+                      href={`/api/${profile.author}${profile.author}`}
+                    >
+                      {' '}
+                      {/* //todo */}
                       Download
-                    </button>
+                    </a>
                     <button className="px-3 py-1 bg-red-500 rounded">
                       Revoke
                     </button>
