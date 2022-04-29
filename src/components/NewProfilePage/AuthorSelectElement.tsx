@@ -15,7 +15,7 @@ interface Props {
   selectChangedHandler: (name: string) => void
 }
 
-export default function CreatorSelectElement(props: Props) {
+export default function AuthorSelectElement(props: Props) {
   const [selected, setSelected] = useState(people[0])
 
   useEffect(() => {
@@ -24,9 +24,9 @@ export default function CreatorSelectElement(props: Props) {
 
   return (
     <Listbox value={selected} onChange={setSelected}>
-      <Listbox.Label className="font-bold text-left">Creator:</Listbox.Label>
+      <Listbox.Label className="font-bold text-left">Author</Listbox.Label>
 
-      <div className="relative mt-1">
+      <div className="relative">
         <Listbox.Button className="relative w-full py-3 pl-3 pr-10 text-left bg-gray-100 rounded-md shadow-md cursor-default dark:bg-neutral-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
           <span className="block truncate text-[color:var(--body-text)]">
             {selected.name}

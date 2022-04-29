@@ -4,7 +4,7 @@ import BaseInputWithLabel from '@/components/base/BaseInputWithLabel'
 import Modal from '@/components/Modal'
 import DefaultLayout from '@/components/DefaultLayout'
 import type { OVPNProfile } from '@/lib/types'
-import CreatorSelectElement from '@/components/NewProfilePage/CreatorSelectElement'
+import AuthorSelectElement from '@/components/NewProfilePage/AuthorSelectElement'
 
 Home.layout = (page: React.ReactElement) => (
   <DefaultLayout>{page}</DefaultLayout>
@@ -12,13 +12,13 @@ Home.layout = (page: React.ReactElement) => (
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [creatorName, setCreatorName] = useState('')
+  const [author, setAuthor] = useState('')
 
   interface VPNProfileForm {
     profileName: { value: string }
+    author: { value: string }
     startDate: { value: string }
     subscriptionLength: { value: string }
-    creator: { value: string }
   }
 
   function requestCreateNewProfile(e: React.SyntheticEvent) {
@@ -28,9 +28,9 @@ export default function Home() {
     const form = e.target as typeof e.target & VPNProfileForm
     const data: OVPNProfile = {
       name: form.profileName?.value,
+      author,
       startDate: form.startDate?.value,
       subscriptionLength: form.subscriptionLength?.value,
-      creator: creatorName,
     }
     console.log('data:', data)
 
@@ -55,7 +55,7 @@ export default function Home() {
       </Head>
 
       <div className="grid w-full h-full min-h-screen place-items-center text-[color:var(--c-primary)]">
-        <div className="w-full max-w-[30rem] rounded-2xl lg:dark:shadow-lg lg:dark:bg-neutral-800 py-8 px-6 prose-lg text-center">
+        <div className="w-full max-w-[30rem] rounded-2xl lg:dark:shadow-lg lg:dark:bg-neutral-800 py-8 px-6 text-center">
           <h1 className="mb-3 text-5xl text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">
             Hello Internet!
           </h1>
@@ -66,9 +66,8 @@ export default function Home() {
 
           <form
             onSubmit={requestCreateNewProfile}
-            className="flex flex-col gap-2"
+            className="flex flex-col gap-4"
           >
-            <CreatorSelectElement selectChangedHandler={setCreatorName} />
             <BaseInputWithLabel
               labelText="Profile name"
               title="no spaces, only number and letters, dash and underscore allowed"
@@ -78,6 +77,8 @@ export default function Home() {
               pattern="^[\w-]+$"
               required
             />
+
+            <AuthorSelectElement selectChangedHandler={setAuthor} />
 
             <BaseInputWithLabel
               labelText="Start date"
