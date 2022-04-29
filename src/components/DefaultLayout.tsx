@@ -2,10 +2,10 @@ import TheHeader from '@/components/TheHeader'
 import TheFooter from '@/components/TheFooter'
 
 interface Props {
-  children?: React.ReactNode
+  children: React.ReactNode
 }
 
-const DefaultLayout: React.FC = ({ children }: Props) => {
+const DefaultLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <TheHeader />

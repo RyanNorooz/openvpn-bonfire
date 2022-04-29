@@ -29,7 +29,7 @@ export default async function handler(
 
     res.setHeader('Content-Type', 'application/pdf')
     res.setHeader('Content-Disposition', 'attachment; filename=dummy.pdf')
-    await pipeline(response.body, res)
+    await pipeline(response.body ?? '', res)
   } catch (err) {
     res.status(500).json({
       output: 'Failed...! error: \n' + String(err),
