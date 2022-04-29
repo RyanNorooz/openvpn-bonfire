@@ -69,11 +69,10 @@ export default function Home({ OVPNProfiles }: Props) {
                   <td className="p-4 pr-8">{profile.subscriptionLength}</td>
                   <td className="flex gap-1 p-4 pr-8">
                     <a
+                      download
                       className="px-3 py-1 bg-blue-500 rounded"
-                      href={`/api/${profile.author}${profile.author}`}
+                      href={`/api/downloadprofile?author=${profile.author}&client=${profile.name}`}
                     >
-                      {' '}
-                      {/* //todo */}
                       Download
                     </a>
                     <button className="px-3 py-1 bg-red-500 rounded">
