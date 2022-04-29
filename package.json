@@ -11,6 +11,9 @@
     "prepare": "husky install"
   },
   "lint-staged": {
+    "*.?(c)[jt]s?(x)": [
+      "eslint --fix --ignore-path .prettierignore"
+    ],
     "*": [
       "prettier --ignore-unknown --write"
     ]
