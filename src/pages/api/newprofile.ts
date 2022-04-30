@@ -23,6 +23,7 @@ export default async function handler(
       ./src/lib/headless-openvpn.sh`
     )
 
+    execSync(`mkdir -p "/root/${reqData.author}/"`)
     execSync(`mv "/root/${reqData.name}.ovpn" "/root/${reqData.author}/"`)
 
     const db = await openDB()
