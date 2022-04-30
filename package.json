@@ -1,8 +1,12 @@
 {
-  "name": "openvpn-automation",
+  "name": "openvpn-panel",
   "version": "1.0.0",
   "description": "openvpn automation for personal use",
   "author": "Ryan Norooz",
+  "contributors": [
+    "Ryan Norooz",
+    "Maktoobgar"
+  ],
   "scripts": {
     "dev": "node ./src/db/databaseDevSetup.js && next dev",
     "build": "next build",

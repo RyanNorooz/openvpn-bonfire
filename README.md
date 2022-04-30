@@ -8,12 +8,13 @@ _**DISCLAIMER!** This project was created for experienced users (system administ
 
 ### features
 
-- [ ] ✏ Create
+- [x] ✏ Create
 - [ ] ⛔ Revoke
 - [ ] ⬇ Download
 - [ ] ⚡ mass create profiles
 - [ ] 🔑 create password protected profiles
 - [x] 🔐 better security compared to OpenVPN defaults
+- [ ] ♻ populate db with old profiles (profiles created without this tool)
 
 ## Screenshots
 
