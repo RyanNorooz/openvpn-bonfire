@@ -23,8 +23,10 @@ export default async function handler(
       ./src/lib/headless-openvpn.sh`
     )
 
-    execSync(`mkdir -p "/root/${reqData.author}/"`)
-    execSync(`mv "/root/${reqData.name}.ovpn" "/root/${reqData.author}/"`)
+    execSync(`mkdir -p "/root/openvpn-profiles/${reqData.author}/"`)
+    execSync(
+      `mv "/root/${reqData.name}.ovpn" "/root/openvpn-profiles/${reqData.author}/"`
+    )
 
     const db = await openDB()
     const sql =
@@ -47,6 +49,7 @@ export default async function handler(
   }
 }
 
+//* mass create profiles
 // for (const i in [...Array(10)]) {
 //   const output = execSync(
 //     `export MENU_OPTION="1" &&
