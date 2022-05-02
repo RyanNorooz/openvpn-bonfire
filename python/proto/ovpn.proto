@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ir.behaves.ovpn";
+option java_outer_classname = "OVPN";
+option objc_class_prefix = "HLW";
+
+package ovpn_package;
+
+// The greeting service definition.
+service OVPN {
+  // lists all clients
+  rpc list (Empty) returns (ListResponse) {}
+  // get id of a client
+  rpc get_id (Name) returns (ID) {}
+  // get name of a client
+  rpc get_name (ID) returns (Name) {}
+}
+
+// list function
+message ListResponse {
+  repeated Client clients = 1;
+}
+
+message Client {
+  string name = 1;
+  int32 id = 2;
+}
+
+// general section
+message Name {
+  string name = 1;
+}
+
+message ID {
+  int32 id = 1;
+}
+
+message Empty {}
