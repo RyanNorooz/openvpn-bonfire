@@ -17,8 +17,8 @@ export default async function handler(
   // const output = execFileSync('./src/scripts/createNewProfile.sh') //TODO: test this on the server
   try {
     const output = execSync(
-      `export MENU_OPTION="2" &&
-      export CLIENTNUMBER="${reqData.name}" &&
+      `export MENU_OPTION="2"
+      export CLIENTNUMBER="${reqData.name}"
       ./src/lib/headless-openvpn.sh`
     )
     const db = await openDB()
