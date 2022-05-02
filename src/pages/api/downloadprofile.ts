@@ -20,7 +20,7 @@ export default async function handler(
   `)
 
   try {
-    res.setHeader('Content-Type', 'text/plain')
+    res.setHeader('Content-Type', 'application/ovpn')
     res.setHeader(
       'content-disposition',
       'attachment; filename=' + `${client}.ovpn`
