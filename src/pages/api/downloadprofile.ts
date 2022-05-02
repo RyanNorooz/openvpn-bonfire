@@ -21,6 +21,10 @@ export default async function handler(
 
   try {
     res.setHeader('Content-Type', 'text/plain')
+    res.setHeader(
+      'content-disposition',
+      'attachment; filename=' + `${client}.ovpn`
+    )
     res.send(output)
   } catch (err) {
     res.status(500).json({
