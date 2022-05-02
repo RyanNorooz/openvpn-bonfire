@@ -13,14 +13,14 @@ export function TheHeaderNav() {
           <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
         </li>
 
-        <li className="relative group">
+        {/* <li className="relative group">
           <Link href="/revokeprofile">
-            <a className="rounded-lg outline-none focus:ring focus:ring-purple-500 focus:ring-opacity-25">
+            <a  className="rounded-lg outline-none focus:ring focus:ring-purple-500 focus:ring-opacity-25">
               revokeExistingProfile
             </a>
           </Link>
           <div className="w-full h-0.5 bg-transparent group-hover:bg-purple-500 transition-al absolute bottom-0" />
-        </li>
+        </li> */}
 
         <li className="relative group">
           {/* <Link href="/easteregg"> */}

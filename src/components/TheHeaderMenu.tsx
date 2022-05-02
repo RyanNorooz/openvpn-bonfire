@@ -36,7 +36,7 @@ export default function TheHeaderMenu(props: any) {
                 </button>
               )}
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <button
                   className={`${
@@ -50,7 +50,7 @@ export default function TheHeaderMenu(props: any) {
                   </Link>
                 </button>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item>
               {({ active }) => (
                 <button

@@ -76,7 +76,7 @@ export default function Home({ OVPNProfiles }: Props) {
                     >
                       Download
                     </a>
-                    <button className="px-3 py-1 bg-red-500 rounded">
+                    <button disabled className="px-3 py-1 bg-red-500 rounded">
                       Revoke
                     </button>
                   </td>
