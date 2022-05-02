@@ -13,7 +13,7 @@ export default class Clients {
   // dictionary of id: name
   list(): Record<number, string> {
     const lines = this._raw_list()
-    const elements = {}
+    const elements: Record<number, string> = {}
     for (let i = 0; i < lines.length; i++) {
       const item = lines[i].trim().split(' ')
       elements[parseInt(item[0].substring(0, item[0].length - 1))] = item[1]
@@ -22,9 +22,9 @@ export default class Clients {
   }
 
   // dictionary of name: id
-  reversed_list() {
+  reversed_list(): Record<string, number> {
     const lines = this._raw_list()
-    const elements = {}
+    const elements: Record<string, number> = {}
     for (let i = 0; i < lines.length; i++) {
       const item = lines[i].trim().split(' ')
       elements[item[1]] = parseInt(item[0].substring(0, item[0].length - 1))
@@ -33,8 +33,7 @@ export default class Clients {
   }
 
   // returns name from client id
-  get_name(id) {
-    id = parseInt(id)
+  get_name(id: number) {
     const li = this.list()
     if (id in li) {
       return li[id]
@@ -43,7 +42,7 @@ export default class Clients {
   }
 
   // returns id from client name
-  get_id(name) {
+  get_id(name: string) {
     const li = this.reversed_list()
     if (name in li) {
       return li[name]
