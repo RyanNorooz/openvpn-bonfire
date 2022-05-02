@@ -2,6 +2,13 @@
 
 # lets make our lives easier
 
+# Determine if we use tls-auth or tls-crypt
+if grep -qs "^tls-crypt" /etc/openvpn/server.conf; then
+    TLS_SIG="1"
+elif grep -qs "^tls-auth" /etc/openvpn/server.conf; then
+    TLS_SIG="2"
+fi
+
 cat /etc/openvpn/client-template.txt
 
 echo "<ca>"
