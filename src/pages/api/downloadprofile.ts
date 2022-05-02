@@ -1,35 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-
+import fs from 'fs'
+import path from 'path'
 import stream from 'stream'
 import { promisify } from 'util'
 import fetch from 'node-fetch'
+import { execSync } from 'child_process'
 
-const pipeline = promisify(stream.pipeline)
-
-interface ResponseData {
-  output: string
-}
+type ResponseData = Buffer | { output: string }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  const { author, client } = req.query
-  const url = `/root/${author}/${client}.ovpn`
+  const { client } = req.query
 
-  res.setHeader(
-    'content-disposition',
-    'attachment; filename=' + `${client}.ovpn`
-  )
+  const output = execSync(`
+    export CLIENT="${client}"
+    ./src/lib/createprofile.sh
+  `)
 
   try {
-    const response = await fetch(url) // replace this with your API call & options
-    if (!response.ok)
-      throw new Error(`unexpected response ${response.statusText}`)
-
-    res.setHeader('Content-Type', 'application/pdf')
-    res.setHeader('Content-Disposition', 'attachment; filename=dummy.pdf')
-    await pipeline(response.body ?? '', res)
+    res.setHeader('Content-Type', 'text/plain')
+    res.send(output)
   } catch (err) {
     res.status(500).json({
       output: 'Failed...! error: \n' + String(err),
