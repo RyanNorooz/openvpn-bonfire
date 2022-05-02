@@ -42,7 +42,7 @@ export default class Clients {
     return -1
   }
 
-  // returns name from client id
+  // returns id from client name
   get_id(name) {
     let li = this.reversed_list()
     if (name in li) {
