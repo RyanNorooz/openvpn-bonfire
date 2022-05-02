@@ -5,6 +5,7 @@ import * as style from '@dicebear/avatars-identicon-sprites'
 import DefaultLayout from '@/components/DefaultLayout'
 import type { OVPNProfile } from '@/lib/types'
 import { openDB } from '@/db'
+import clients from '@/lib/clients'
 
 Home.layout = (page: React.ReactElement) => (
   <DefaultLayout>{page}</DefaultLayout>
@@ -90,10 +91,19 @@ export default function Home({ OVPNProfiles }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const db = await openDB()
-  const profiles = await db.all('SELECT * FROM profile')
+  // const db = await openDB()
+  // const profiles = await db.all('SELECT * FROM profile')
+
+  const client = new clients()
+  const profiles = client.list()
+
+  const profileList: Record<string, string>[] = []
+
+  Object.keys(profiles).map((key, index) => {
+    profileList[index] = { name: profiles[parseInt(key)] }
+  })
 
   return {
-    props: { OVPNProfiles: profiles },
+    props: { OVPNProfiles: profileList },
   }
 }
