@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout source 💾
-        uses: actions/checkout@v2
+        run: cd /srv/openvpn-bonfire; git pull
 
       - name: Cache pnpm modules & NextJS builds ⚡
         id: pnpmCacheStep
